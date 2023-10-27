@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<!-- saved from url=(0033)https://onlinetoolz.net/draw-lots -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		
+		<link rel="shortcut icon" href="https://onlinetoolz.net/favicon.ico">
+		<title>قرعة الرحلات الجوية لحجاج الداخل</title>
+		<meta name="description" content="Create a virtual lottery bowl and use it for drawing one lot after the other. You decide the text for each lot, or whether you want them to be numbered.">				
+		<link rel="stylesheet" type="text/css" href="./css/style.css">
+		<style>
+			/* Only for non-IE browsers. */
+			#searchbox button:hover
+			{
+				background-color: darkorange;
+			}
+			#searchbox input:hover
+			{
+				border-color: darkorange;
+			}
+		</style>
+
+		<script> var tallpinne = 0x6562d129; </script>
+		<script src="./js/script.js.download" type="text/javascript"></script>
+		
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		
+		<link rel="search" type="application/opensearchdescription+xml" title="Online Tools" href="https://onlinetoolz.net/search.xml">
+
+	</head>
+	<body style="direction: rtl">
+		
+<div><img src="img/Logo.svg" class="logo" alt="Saudia Logo">
+</div>
+		<div id="container">
+			<h1>قرعة الرحلات الجوية لحجاج الداخل</h1>			
+<form class="box" action="#0" onsubmit="calculate(); return false;">الحملات المشاركة في القرعة
+    <div class="textarea_container">
+    <textarea id="t" onInput="this.parentNode.dataset.replicatedValue = this.value"></textarea>
+    <button class="button" type="submit">إنشاء القرعة</button>
+    </div>
+</form>
+
+	<div id="result_container" style="result_container"></div>
+	<style>.adarticle { margin: 20px auto 20px auto; }</style>
+	<script async="" src="./js/f.txt" crossorigin="anonymous"></script>
+			
+	
+<script>
+var pull_timer = 0;
+var pull_anim = false;
+
+var tickets = [];
+var ticket_i = 0;
+
+var pull_width = 0;
+
+function getTextContent(elem)
+{
+   return elem.textContent || elem.innerText || '';
+}
+
+
+function startPull()
+{
+	var ticket = document.getElementById("ticket");
+	var bowl = document.getElementById("bowl");
+	var ticket_location = document.getElementById("ticket_location");
+	var ticket_counter = document.getElementById("ticket_counter");
+	var ticket_list = document.getElementById("ticket_list");
+	var pull_button = document.getElementById("pull_button");
+	
+	var no_tickets = (ticket_i >= tickets.length);
+	
+	if (no_tickets)
+	{
+		pull_button.disabled = true;
+	}
+	
+	ticket.style.visibility = 'hidden';
+	
+	pull_timer = 100;
+	if (pull_anim)
+	{
+		clearInterval(pull_anim);
+		if (no_tickets)
+		{
+			pull_timer = 0;
+		}
+		else
+		{
+			ticket_location.innerHTML = ticket.innerHTML;
+			ticket_location.style.visibility = 'visible';
+			ticket_location.style.opacity = '1';
+		}
+	}
+	
+	ticket.innerHTML = '<big>' + tickets[ticket_i] + '</big>';
+	
+	if (ticket_i > 0)
+	{
+		var elem = ticket_list.lastChild;
+		if (elem)
+		{
+			elem.innerHTML = getTextContent(elem).trim();
+		}
+	}
+	
+	if (!no_tickets)
+	{
+		var newListItem = document.createElement("li");
+		newListItem.innerHTML = '<b>' + tickets[ticket_i] + '</b>';
+		ticket_list.appendChild(newListItem);
+		
+		++ticket_i;
+		
+		ticket_counter.innerHTML = tickets.length - ticket_i;
+	}
+	
+	pull_anim = setInterval(function()
+	{
+		if (pull_timer < 0)
+		{
+			clearInterval(pull_anim);
+			pull_anim = false;
+			pull_timer = 0;
+			if (!no_tickets)
+			{
+				ticket_location.innerHTML = ticket.innerHTML;
+				ticket_location.style.visibility = 'visible';
+				ticket_location.style.opacity = '1';
+			}
+			else
+			{
+				ticket_location.innerHTML = '<big style="color:#ffac00">اكتملت القرعة لجميع الحملات</big><br><br><button class="button" type="button" onclick="fillBowl()">إعادة القرعة</button>';
+				ticket_location.style.border = 'none';
+				ticket_location.style.background = 'none';
+				ticket_location.style.backgroundColor = 'transparent';
+				ticket_location.style.visibility = 'visible';
+				ticket_location.style.opacity = '1';
+			}
+			ticket.style.visibility = 'hidden';
+			return;
+		}
+		
+		var d1 = pull_timer / 100;
+		var d2 = 1 - d1;
+		
+		if (!no_tickets)
+		{
+			ticket.style.transform = 'scale(' + (0.20 + 0.80 * d2) + ')';
+			
+			var ticket_rect = ticket.getBoundingClientRect();
+			var ticket_location_rect = ticket_location.getBoundingClientRect();
+			var bowl_rect = bowl.getBoundingClientRect();
+			
+			ticket.style.top = (bowl_rect.top * d1  + ticket_location_rect.top * d2) + 'px';
+			ticket.style.left = ((bowl_rect.left + bowl_rect.right) * d1 / 2 + (ticket_location_rect.left + ticket_location_rect.right) * d2 / 2 - (ticket_rect.right - ticket_rect.left) / 2) + 'px';
+			ticket.style.visibility = 'visible';
+		}
+
+		ticket_location.style.opacity = ""+Math.max(0, 1 - d2 * 1.5);
+
+		pull_timer -= 12;
+	}, 50);
+}
+
+function fillBowl()
+{
+	ticket_i = 0;
+	tickets.shuffle();
+	
+	var result = '';
+	
+	result += '<div id="ticket"><big></big></div>';
+	//result += '<table><tr><td>';
+	
+	result += '<div id="bowl_area" style="bowl_area">';
+	result += '<div id="bowl"  style="bowl">';
+	result += '<big id="ticket_counter" style="ticket_counter">' + tickets.length + '</big>';
+	result += '</div>';
+	result += '<button class="button" id="pull_button" type="button" onclick="startPull()">سحب</button>';
+	result += '</div>';
+	
+	//result += '</td><td style="width:100%">';
+	
+	result += '<div id="ticket_area" style="ticket_area">';
+	result += '<div id="ticket_location" style="ticket_location" ><big>placeholder</big></div>';
+	result += '</div>';
+
+	//result += '</td></tr></table><div style="clear:both;"></div>';
+	
+	result += '<ol id="ticket_list"></ol>'
+	
+	showResult(result, false);
+}
+
+var TICKET_LIMIT = 5000;
+
+function calculate()
+{
+	inputHash = '';
+	
+	var lines = getInputStringList('t');
+	
+	updateHash(inputHash);
+	
+	if (lines == null)
+	{
+		showError('لم يتم إدخال أي حملات');
+		return;
+	}
+	
+	tickets = [];
+	
+	for (var i = 0; i < lines.length; ++i)
+	{
+		var line = lines[i].trim();
+		
+		if (line !== '')
+		{
+			var copies = 1;
+			if (line[line.length - 1] == ')')
+			{
+				var pos = line.lastIndexOf('(');
+				if (pos != -1)
+				{
+					var copiesStr = line.substring(pos + 1, line.length - 1);
+					copies = Number(copiesStr);
+					line = line.substr(0, pos).trim();
+					if (isNaN(copies) || copies < 0 || copies != Math.floor(copies) || copiesStr === '')
+					{
+						showError('Invalid number of copies of "' + line + '".');
+						return;
+					}
+				}
+			}
+			
+			var newTickets = [];
+			
+			var range = (line + ' ').match(/^(\d+)\s*-\s*(\d+)\s(.*)$/);
+			if (range != null && range.length >= 4)
+			{
+				var numMin = Number(range[1]);
+				var numMax = Number(range[2]);
+				
+				if (!isNaN(numMin) && !isNaN(numMax) && numMin == Math.floor(numMin) && numMax == Math.floor(numMax))
+				{
+					if (numMin > numMax)
+					{
+						var tmp = numMin;
+						numMin = numMax;
+						numMax = tmp;
+					}
+					var label = ' '+ range[3];
+					for (var num = numMin; num <= numMax && newTickets.length <= TICKET_LIMIT; ++num)
+					{
+						newTickets.push(num + label);
+					}
+				}
+			}
+			
+			if (newTickets.length == 0)
+			{
+				newTickets.push(textOut(line));
+			}
+			
+			if (tickets.length + newTickets.length * copies > TICKET_LIMIT)
+			{
+				showError('The bowl does not fit more than ' + TICKET_LIMIT + ' lots.');
+				return;
+			}
+			
+			
+			for (var j = 0; j < copies; ++j)
+			{
+				tickets = tickets.concat(newTickets);
+			}
+		}
+	}
+	
+	fillBowl();
+}
+
+onHashUpdate = calculate;
+
+var elems = document.getElementsByClassName('example');
+for (var i = 0; i < elems.length; ++i)
+{
+	var elem = elems[i];
+	elem.href = '#t=' + hash_encode(elem.innerHTML.replace(', ', '\n').toLowerCase());
+	elem.onclick = function()
+	{
+		var top = window.pageYOffset || document.documentElement.scrollTop;	
+		var res = document.getElementById('t');
+		if (top > res.offsetTop)
+		{
+			res.scrollIntoView();
+		}
+		return true;
+	};
+}
+
+
+</script>
+
+
+</div>
+
+
+
+	
+ 
+
+</body></html>
