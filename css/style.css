@@ -547,12 +547,13 @@ input[type="text"],input[type="number"],textarea {
 
 #bowl
 {
-	background: url(../img/bowl3.svg) no-repeat;
-	width: 120px;
+	background: url(../img/bowl3.png) no-repeat;
+	width: 107px;
 	height: 114px;
 	margin: auto;
 	margin-bottom: 3px;
 	background-position: center bottom;
+	background-size: contain;
 }
 
 #ticket_counter
