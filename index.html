@@ -6,25 +6,127 @@
 		<title>قرعة الرحلات الجوية لحجاج الداخل</title>
 		<meta name="description" content="القرعة السنوية لرحلات الخطوط السعودية المخصصة لحملات حجاج الداخل">				
 		<link rel="stylesheet" type="text/css" href="./css/style.css">
-		<style>
-			/* Only for non-IE browsers. */
-			#searchbox button:hover
-			{
-				background-color: darkorange;
-			}
-			#searchbox input:hover
-			{
-				border-color: darkorange;
-			}
-		</style>
-
 		<script> var tallpinne = 0x6562d129; </script>
 		<script src="./js/script.js.download" type="text/javascript"></script>
 		
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		
 		<link rel="search" type="application/opensearchdescription+xml" title="Online Tools" href="https://onlinetoolz.net/search.xml">
+<style>
+    /* Google Fonts */
+    @font-face {
+      font-display: block; /*changed back to block:- code fix for not showing text before font-icon loads on page*/
+      font-family: 'Material Icons';
+      font-style: normal;
+      font-weight: 400;
+      src: url(dist/SaudiaWebApp/browser/fonts/font-icons/material-icons.woff2) format('woff2');
+    }
 
+    @font-face {
+      font-display: block; /*changed back to block:- code fix for not showing text before font-icon loads on page*/
+      font-family: 'Material Icons Outlined';
+      font-style: normal;
+      font-weight: 400;
+      src: url(dist/SaudiaWebApp/browser/fonts/font-icons/material-icons-outlined.woff2) format('woff2');
+    }
+
+    @font-face {
+      font-display: block; /*changed back to block:- code fix for not showing text before font-icon loads on page*/
+      font-family: 'Material Symbols Outlined';
+      font-style: normal;
+      font-weight: 100 700;
+      src: url(dist/SaudiaWebApp/browser/fonts/font-icons/material-symbols-outlined-new.woff2) format('woff2');
+    }
+
+    /* Custom Fonts */
+    @font-face {
+      font-display: swap;
+      font-family: 'Suisse Intl';
+      font-style: normal;
+      font-weight: 400;
+      src: url(dist/SaudiaWebApp/browser/fonts/custom-fonts/SuisseIntl-Regular-WebXL.woff2) format('woff2'),
+        url(dist/SaudiaWebApp/browser/fonts/custom-fonts/SuisseIntl-Regular-WebXL.woff) format('woff'),
+        url(dist/SaudiaWebApp/browser/fonts/custom-fonts/SuisseIntl-Regular-WebXL.ttf) format('truetype');
+    }
+
+    @font-face {
+      font-display: swap;
+      font-family: 'Suisse Intl';
+      font-style: normal;
+      font-weight: 500;
+      src: url(dist/SaudiaWebApp/browser/fonts/custom-fonts/SuisseIntl-Medium-WebXL.woff2) format('woff2'),
+        url(dist/SaudiaWebApp/browser/fonts/custom-fonts/SuisseIntl-Medium-WebXL.woff) format('woff'),
+        url(dist/SaudiaWebApp/browser/fonts/custom-fonts/SuisseIntl-Medium-WebXL.ttf) format('truetype');
+    }
+
+    @font-face {
+      font-display: swap;
+      font-family: 'Suisse Intl';
+      font-style: normal;
+      font-weight: 600;
+      src: url(dist/SaudiaWebApp/browser/fonts/custom-fonts/SuisseIntl-SemiBold-WebXL.woff2) format('woff2'),
+        url(dist/SaudiaWebApp/browser/fonts/custom-fonts/SuisseIntl-SemiBold-WebXL.woff) format('woff'),
+        url(dist/SaudiaWebApp/browser/fonts/custom-fonts/SuisseIntl-SemiBold-WebXL.ttf) format('truetype');
+    }
+
+    @font-face {
+      font-display: swap;
+      font-family: 'Suisse Intl';
+      font-style: normal;
+      font-weight: 900;
+      src: url(dist/SaudiaWebApp/browser/fonts/custom-fonts/SuisseIntl-Bold-WebXL.woff2) format('woff2'),
+        url(dist/SaudiaWebApp/browser/fonts/custom-fonts/SuisseIntl-Bold-WebXL.woff) format('woff'),
+        url(dist/SaudiaWebApp/browser/fonts/custom-fonts/SuisseIntl-Bold-WebXL.ttf) format('truetype');
+    }
+
+ /* Saudia Rebranding - Saudia sans custom fonts STARTS */
+    @font-face {
+      font-display: block;
+      font-family: 'Saudia Sans';
+      font-style: normal;
+      font-weight: 400;
+      src: url(dist/SaudiaWebApp/browser/fonts/custom-fonts/SaudiaSans-Regular.woff2) format('woff2'),
+        url(dist/SaudiaWebApp/browser/fonts/custom-fonts/SaudiaSans-Regular.woff) format('woff'),
+        url(dist/SaudiaWebApp/browser/fonts/custom-fonts/SaudiaSans-Regular.ttf) format('truetype'),
+        url(dist/SaudiaWebApp/browser/fonts/custom-fonts/SaudiaSans-Regular.otf) format('opentype'),
+        url(dist/SaudiaWebApp/browser/fonts/custom-fonts/SaudiaSans-Regular.eot) format('embedded-opentype');
+    }
+    @font-face {
+      font-display: block;
+      font-family: 'Saudia Sans';
+      font-style: normal;
+      font-weight: 500;
+      src: url(dist/SaudiaWebApp/browser/fonts/custom-fonts/SaudiaSans-Medium.woff2) format('woff2'),
+        url(dist/SaudiaWebApp/browser/fonts/custom-fonts/SaudiaSans-Medium.woff) format('woff'),
+        url(dist/SaudiaWebApp/browser/fonts/custom-fonts/SaudiaSans-Medium.ttf) format('truetype'),
+        url(dist/SaudiaWebApp/browser/fonts/custom-fonts/SaudiaSans-Medium.otf) format('opentype'),
+        url(dist/SaudiaWebApp/browser/fonts/custom-fonts/SaudiaSans-Medium.eot) format('embedded-opentype');
+    }
+    @font-face {
+      font-display: block;
+      font-family: 'Saudia Sans';
+      font-style: normal;
+      font-weight: 600;
+      src: url(dist/SaudiaWebApp/browser/fonts/custom-fonts/SaudiaSans-SemiBold.woff2) format('woff2'),
+        url(dist/SaudiaWebApp/browser/fonts/custom-fonts/SaudiaSans-SemiBold.woff) format('woff'),
+        url(dist/SaudiaWebApp/browser/fonts/custom-fonts/SaudiaSans-SemiBold.ttf) format('truetype'),
+        url(dist/SaudiaWebApp/browser/fonts/custom-fonts/SaudiaSans-SemiBold.otf) format('opentype'),
+        url(dist/SaudiaWebApp/browser/fonts/custom-fonts/SaudiaSans-SemiBold.eot) format('embedded-opentype');
+    }
+    @font-face {
+      font-display: block;
+      font-family: 'Saudia Sans';
+      font-style: normal;
+      font-weight: 900;
+      src: url(dist/SaudiaWebApp/browser/fonts/custom-fonts/SaudiaSans-Bold.woff2) format('woff2'),
+        url(dist/SaudiaWebApp/browser/fonts/custom-fonts/SaudiaSans-Bold.woff) format('woff'),
+        url(dist/SaudiaWebApp/browser/fonts/custom-fonts/SaudiaSans-Bold.ttf) format('truetype'),
+        url(dist/SaudiaWebApp/browser/fonts/custom-fonts/SaudiaSans-Bold.otf) format('opentype'),
+        url(dist/SaudiaWebApp/browser/fonts/custom-fonts/SaudiaSans-Bold.eot) format('embedded-opentype');
+    }
+    
+ /* Saudia Rebranding - Saudia sans custom fonts END */
+  </style>
 	</head>
 	<body style="direction: rtl">
 		
