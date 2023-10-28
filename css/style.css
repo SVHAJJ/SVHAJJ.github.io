@@ -548,8 +548,8 @@ input[type="text"],input[type="number"],textarea {
 #bowl
 {
 	background: url(../img/bowl3.png) no-repeat;
-	width: 107px;
-	height: 114px;
+	width: 116px;
+	height: 141px;
 	margin: auto;
 	margin-bottom: 3px;
 	background-position: center bottom;
@@ -559,7 +559,6 @@ input[type="text"],input[type="number"],textarea {
 #ticket_counter
 {
 	display: block;
-	padding-top: .8rem;
 	color: #d10f0f;
 	font-size: 3em;
 	font-weight: 600;
